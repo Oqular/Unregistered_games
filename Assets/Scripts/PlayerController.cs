@@ -28,7 +28,8 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            StartCoroutine(dashTimer(timer));
+            //StartCoroutine(dashTimer(timer));
+            Dash();
         }
 
         if (!isInvulnerable)
@@ -55,7 +56,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Dash()
     {
-        controller.Move(dashDir * Time.deltaTime);
+        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
     }
 
 }
