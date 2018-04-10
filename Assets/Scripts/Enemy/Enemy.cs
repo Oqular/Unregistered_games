@@ -20,4 +20,13 @@ public class Enemy : MonoBehaviour {
             Destroy(this.gameObject);
         }
 	}
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.tag == "Player")
+        {
+            FindObjectOfType<Character>().TakeDamage();
+        }
+    }
+
 }

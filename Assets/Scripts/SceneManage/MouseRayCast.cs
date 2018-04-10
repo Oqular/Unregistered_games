@@ -20,7 +20,7 @@ public class MouseRayCast : MonoBehaviour {
 
         if (Physics.Raycast(ray, out hit))
         {
-            Debug.Log(hit.point);
+            //Debug.Log(hit.point);
             //if (hit.transform.gameObject != null)
             //{
 
