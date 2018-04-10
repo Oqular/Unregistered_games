@@ -15,6 +15,9 @@ public class HealthUI : MonoBehaviour {
 	}
 	
 	void Update () {
-        livesUI.sprite = lives[cha.lives];
+        if (cha.lives <= 3 && cha.lives >= 0)
+        {
+            livesUI.sprite = lives[cha.lives];
+        }
 	}
 }
