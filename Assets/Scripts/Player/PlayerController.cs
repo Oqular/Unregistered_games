@@ -11,8 +11,7 @@ public class PlayerController : MonoBehaviour {
     public float gravityScale;
     private Vector3 moveDir;
     private Vector3 dashDir;
-    [SerializeField]
-    private bool isInvulnerable;
+    public bool isInvulnerable;
 
     public float timer;
 
@@ -31,6 +30,11 @@ public class PlayerController : MonoBehaviour {
     private void Update()
     {
 
+        moveDir = new Vector3(Input.GetAxis("Horizontal") * playerClass.movementSpeed, 0f, Input.GetAxis("Vertical") * playerClass.movementSpeed);
+        moveDir.y = moveDir.y + (Physics.gravity.y * gravityScale);
+        dashDir = moveDir;
+        controller.Move(moveDir * Time.deltaTime);
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //StartCoroutine(dashTimer(timer));
@@ -39,10 +43,7 @@ public class PlayerController : MonoBehaviour {
 
         if (!isInvulnerable)
         {
-            moveDir = new Vector3(Input.GetAxis("Horizontal") * playerClass.movementSpeed, 0f, Input.GetAxis("Vertical") * playerClass.movementSpeed);
-            moveDir.y = moveDir.y + (Physics.gravity.y * gravityScale);
-            dashDir = moveDir;
-            controller.Move(moveDir * Time.deltaTime);
+            
         }else
         {
             //Dash();

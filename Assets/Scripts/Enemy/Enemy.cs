@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
     public bool alive;
+    private float timerAfterDMG = 3;
+    private float timer = 0;
     
 
 	// Use this for initialization
@@ -19,13 +21,32 @@ public class Enemy : MonoBehaviour {
             FindObjectOfType<GameManager>().DropGold(this);
             Destroy(this.gameObject);
         }
+        if (FindObjectOfType<PlayerController>().isInvulnerable)
+        {
+            TimerAfterDMG(timerAfterDMG);
+        }
 	}
 
-    public void OnCollisionEnter(Collision collision)
+    public void OnCollisionStay(Collision collision)
     {
         if(collision.collider.tag == "Player")
         {
-            FindObjectOfType<Character>().TakeDamage();
+            if (!FindObjectOfType<PlayerController>().isInvulnerable)
+            {
+                FindObjectOfType<PlayerController>().isInvulnerable = true;
+                FindObjectOfType<Character>().TakeDamage();
+            }
+
+        }
+    }
+
+    private void TimerAfterDMG(float timeAfterDMG)
+    {
+        timer += Time.deltaTime;
+        if(timer >= timerAfterDMG)
+        {
+            timer = 0;
+            FindObjectOfType<PlayerController>().isInvulnerable = false;
         }
     }
 

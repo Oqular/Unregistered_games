@@ -17,4 +17,9 @@ public class CoinUI : MonoBehaviour {
     void Update () {
         txt.text = "Coins x" + coins;
 	}
+
+    public void AddGold(int gold)
+    {
+        coins += gold;
+    }
 }
