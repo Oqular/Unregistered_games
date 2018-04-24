@@ -17,6 +17,10 @@ public class PlayerController : MonoBehaviour {
 
     MouseRayCast targetPos;
 
+    private Camera mainCamera;
+    public Plane ground;
+    public Gun gun;
+
     private void Start()
     {
         isInvulnerable = false;
@@ -25,6 +29,7 @@ public class PlayerController : MonoBehaviour {
         controller = GetComponent<CharacterController>();
         rigidBody = GetComponent<Rigidbody>();
         targetPos = GameObject.FindObjectOfType<MouseRayCast>();
+        mainCamera = FindObjectOfType<Camera>();
     }
 
     private void Update()
@@ -47,6 +52,26 @@ public class PlayerController : MonoBehaviour {
         }else
         {
             //Dash();
+        }
+        //--------------------------------------------------------------------------
+        Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
+        Plane imaginaryPlane = new Plane(Vector3.up, new Vector3(0, transform.position.y, 0));
+        float rayLenght;
+        if (imaginaryPlane.Raycast(cameraRay, out rayLenght))
+        {
+            Vector3 pointToLook = cameraRay.GetPoint(rayLenght);
+            Debug.DrawLine(cameraRay.origin, pointToLook, Color.red);
+            transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+            //transform.LookAt(pointToLook);
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            gun.isFiring = true;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            gun.isFiring = false;
         }
         
 
