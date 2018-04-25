@@ -59,7 +59,8 @@ public class Enemy : MonoBehaviour {
 
     public void DropCoins()
     {
-        GameObject coins = (GameObject)Instantiate(goldPrefab, transform.position, transform.rotation);
+        //GameObject coins = (GameObject)Instantiate(goldPrefab, transform.position, transform.rotation);
+        FindObjectOfType<GameManager>().DropGold(this);
     }
 
     private void TimerAfterDMG(float timeAfterDMG)
