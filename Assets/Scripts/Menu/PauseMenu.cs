@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour {
 
@@ -9,6 +10,8 @@ public class PauseMenu : MonoBehaviour {
 
     public GameObject pauseMenuUI;
     public GameObject pauseButton;
+    public GameObject player;
+    
 	
 	// Update is called once per frame
 	void Update () {
@@ -27,6 +30,8 @@ public class PauseMenu : MonoBehaviour {
 
     public void Resume()
     {
+        //GameObject.find("Player").GetComponent<PlayerController>().enabled = false;
+        (player.GetComponent("PlayerController") as MonoBehaviour).enabled = true;
         pauseMenuUI.SetActive(false);
         pauseButton.SetActive(true);
         Time.timeScale = 1f;
@@ -35,6 +40,7 @@ public class PauseMenu : MonoBehaviour {
 
     public void Pause()
     {
+        (player.GetComponent("PlayerController") as MonoBehaviour).enabled = false;
         pauseButton.SetActive(false);
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
