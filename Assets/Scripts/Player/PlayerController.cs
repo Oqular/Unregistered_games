@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour {
     Rigidbody rigidBody;
     public float gravityScale;
     private Vector3 moveDir;
-    private Vector3 dashDir;
+    //private Vector3 dashDir;
     public bool isInvulnerable;
 
     public float timer;
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour {
     {
         isInvulnerable = false;
         moveDir = Vector3.zero;
-        dashDir = Vector3.zero;
+        //dashDir = Vector3.zero;
         controller = GetComponent<CharacterController>();
         rigidBody = GetComponent<Rigidbody>();
         targetPos = GameObject.FindObjectOfType<MouseRayCast>();
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour {
 
         moveDir = new Vector3(Input.GetAxis("Horizontal") * playerClass.movementSpeed, 0f, Input.GetAxis("Vertical") * playerClass.movementSpeed);
         moveDir.y = moveDir.y + (Physics.gravity.y * gravityScale);
-        dashDir = moveDir;
+        //dashDir = moveDir;
         controller.Move(moveDir * Time.deltaTime);
 
         /*if (Input.GetKeyDown(KeyCode.Space))
