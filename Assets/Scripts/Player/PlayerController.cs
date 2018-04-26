@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour {
     private Camera mainCamera;
     public Plane ground;
     public Gun gun;
+    public static Vector3 pointToLook;
 
     private void Start()
     {
@@ -40,11 +41,11 @@ public class PlayerController : MonoBehaviour {
         dashDir = moveDir;
         controller.Move(moveDir * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             //StartCoroutine(dashTimer(timer));
             Dash();
-        }
+        }*/
 
         if (!isInvulnerable)
         {
@@ -59,7 +60,7 @@ public class PlayerController : MonoBehaviour {
         float rayLenght;
         if (imaginaryPlane.Raycast(cameraRay, out rayLenght))
         {
-            Vector3 pointToLook = cameraRay.GetPoint(rayLenght);
+            pointToLook = cameraRay.GetPoint(rayLenght);
             Debug.DrawLine(cameraRay.origin, pointToLook, Color.red);
             transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
             //transform.LookAt(pointToLook);
