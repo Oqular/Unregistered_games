@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        enemyCount = FindObjectOfType<InstanciateEnemys>().enemies.Length;
+        enemyCount = FindObjectOfType<InstanciateEnemys>().enemies.Count;
         roomFinished = false;
 	}
 	

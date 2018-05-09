@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class InstanciateEnemys : MonoBehaviour {
 
-    public GameObject[] enemies;
+    public GameObject enemy;
+    public List<GameObject> enemies;
     public Transform[] enemyPositions;
 
 	// Use this for initialization
 	void Start () {
-		for(int i = 0; i < enemies.Length; i++)
+        int count = Random.Range(3, 10);
+		for(int i = 0; i < count; i++)
         {
-            Instantiate(enemies[i], enemyPositions[i].transform.position, Quaternion.identity);
+            enemies.Add(Instantiate(enemy, enemyPositions[i].transform.position, Quaternion.identity));
         }
 	}
 	
