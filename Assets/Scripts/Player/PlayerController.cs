@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour {
     public Gun gun;
     public static Vector3 pointToLook;
 
+    Actions actions;
+
     private void Start()
     {
         isInvulnerable = false;
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour {
         rigidBody = GetComponent<Rigidbody>();
         targetPos = GameObject.FindObjectOfType<MouseRayCast>();
         mainCamera = FindObjectOfType<Camera>();
+        actions = GetComponent<Actions>();
     }
 
     private void Update()
@@ -40,6 +43,15 @@ public class PlayerController : MonoBehaviour {
         moveDir.y = moveDir.y + (Physics.gravity.y * gravityScale);
         //dashDir = moveDir;
         controller.Move(moveDir * Time.deltaTime);
+        if (controller.velocity != Vector3.zero)
+        {
+            actions.Run();
+        }
+        else if (controller.velocity == Vector3.zero)
+        {
+            actions.Stay();
+        }
+        //Debug.Log(controller.velocity == Vector3.zero);
 
         /*if (Input.GetKeyDown(KeyCode.Space))
         {
