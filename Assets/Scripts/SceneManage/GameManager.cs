@@ -9,28 +9,25 @@ public class GameManager : MonoBehaviour {
     private int enemyCount;
     public GameObject door;
     public GameObject reward;
-    private bool roomFinished;
+    private GameObject[] enemies;
+    //private bool roomFinished;
 
 	// Use this for initialization
 	void Start () {
-        enemyCount = FindObjectOfType<InstanciateEnemys>().enemies.Length;
-        roomFinished = false;
+        //enemyCount = FindObjectOfType<InstanciateEnemys>().enemies.Length;
+        //roomFinished = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(enemyCount <= 0 && !roomFinished)
-        {
-            Destroy(door);
-            DropReward();
-            roomFinished = true;
-        }
-	}
+        //enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        //enemyCount = enemies.Length;
+        //Debug.Log(enemyCount);
+    }
 
     public void DropGold(Enemy enemy)
     {
         Instantiate(gold, enemy.transform.position, Quaternion.identity);
-        enemyCount--;
     }
 
     public void DropReward()
