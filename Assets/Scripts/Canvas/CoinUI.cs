@@ -10,8 +10,13 @@ public class CoinUI : MonoBehaviour {
 
     private void Awake()
     {
-        coins = 0;
+        coins = FindObjectOfType<GameManager>().LoadPlayerGold() ;
         txt = GetComponent<Text>();
+    }
+
+    public void Start()
+    {
+        coins = FindObjectOfType<GameManager>().LoadPlayerGold();
     }
 
     void Update () {
