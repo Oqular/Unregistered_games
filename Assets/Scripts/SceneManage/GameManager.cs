@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //PlayerPrefs.SetInt("RoomCount", 0);
+        PlayerPrefs.SetInt("RoomCount", 0);
 
         enemyCount = FindObjectOfType<InstanciateEnemys>().enemies.Count;
         roomFinished = false;
@@ -36,8 +36,8 @@ public class GameManager : MonoBehaviour {
             PlayerPrefs.SetInt("PlayerGold", 0);
         }
 
-        //FindObjectOfType<CoinUI>().coins = LoadPlayerGold();
-        //FindObjectOfType<Character>().lives = LoadPlayerHP();
+        FindObjectOfType<CoinUI>().coins = LoadPlayerGold();
+        FindObjectOfType<Character>().lives = LoadPlayerHP();
 
         Debug.Log("RoomCount : " + roomCount);
         Debug.Log("Player HP : " + PlayerHP);

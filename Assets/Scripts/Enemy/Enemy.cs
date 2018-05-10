@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour {
     public void EnemyDamaged(int damage)
     {
         currentHealth -= damage;
-        Debug.Log("current health is " + currentHealth);
+       // Debug.Log("current health is " + currentHealth);
     }
 
     public void DropCoins()
