@@ -12,7 +12,7 @@ public class HealthUI : MonoBehaviour {
 
     void Start () {
         cha = player.GetComponent<Character>();
-        cha.lives = FindObjectOfType<GameManager>().LoadPlayerHP();
+        //cha.lives = FindObjectOfType<GameManager>().LoadPlayerHP();
 	}
 	
 	void Update () {

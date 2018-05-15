@@ -10,39 +10,30 @@ public class GameManager : MonoBehaviour {
     public GameObject door;
     public GameObject reward;
     private bool roomFinished;
-    private int roomCount;
 
-    // Player Stats
-    private int PlayerHP;
-    private int PlayerGold;
+    //    Saves
+
+    public int roomCount;
+    public int goldCount;
+    public int playerHp;
 
 	// Use this for initialization
 	void Start () {
-        PlayerPrefs.SetInt("RoomCount", 0);
+
+        //PlayerPrefs.SetInt("roomCount", 0);
+        //PlayerPrefs.SetInt("goldCount", 0);
+        //PlayerPrefs.SetInt("playerHp", 3);
 
         enemyCount = FindObjectOfType<InstanciateEnemys>().enemies.Count;
         roomFinished = false;
-        roomCount = 0;
-        PlayerGold = 0;
-        PlayerHP = 0;
-
-        roomCount = LoadRoomCount();
-        PlayerHP = LoadPlayerHP();
-        PlayerGold = LoadPlayerGold();
-        if (roomCount == 0)
-        {
-            PlayerPrefs.SetInt("RoomCount", 0);
-            PlayerPrefs.SetInt("PlayerHP", 3);
-            PlayerPrefs.SetInt("PlayerGold", 0);
-        }
-
-        FindObjectOfType<CoinUI>().coins = LoadPlayerGold();
-        FindObjectOfType<Character>().lives = LoadPlayerHP();
-
-        Debug.Log("RoomCount : " + roomCount);
-        Debug.Log("Player HP : " + PlayerHP);
-        Debug.Log("PlayerGold : " + PlayerGold);
-
+        roomCount = PlayerPrefs.GetInt("roomCount");
+        goldCount = PlayerPrefs.GetInt("goldCount");
+        playerHp = PlayerPrefs.GetInt("playerHp");
+        FindObjectOfType<CoinUI>().coins = goldCount;
+        FindObjectOfType<Character>().lives = playerHp;
+        FindObjectOfType<InstanciateEnemys>().roomCount = roomCount;
+        Debug.Log("goldCount : " + playerHp);
+        FindObjectOfType<InstanciateEnemys>().Spawnenemies();
     }
 	
 	// Update is called once per frame
@@ -52,20 +43,24 @@ public class GameManager : MonoBehaviour {
             Destroy(door);
             DropReward();
             roomFinished = true;
-
             roomCount++;
-            saveGame();
-
+            
+            playerHp = FindObjectOfType<Character>().lives;
+            
+            //Debug.Log("Coins : " + goldCount);
         }
+        Debug.Log("halabala : " + roomCount);
+        FindObjectOfType<InstanciateEnemys>().roomCount = roomCount;
+        goldCount = FindObjectOfType<CoinUI>().coins;
+        
+        PlayerPrefs.SetInt("roomCount", roomCount);
+        PlayerPrefs.SetInt("goldCount", goldCount);
+        PlayerPrefs.SetInt("playerHp", playerHp);
 
-        if(FindObjectOfType<Character>().lives <= 0)
-        {
-            PlayerPrefs.SetInt("RoomCount", 0);
+        if (FindObjectOfType<Character>().lives <= 0)
+            PlayerDied();
 
-            Application.LoadLevel(0);
-        }
-
-	}
+    }
 
     public void DropGold(Enemy enemy)
     {
@@ -78,32 +73,9 @@ public class GameManager : MonoBehaviour {
         Instantiate(reward, reward.transform.position, Quaternion.identity);
     }
 
-    public void saveGame()
+    public void PlayerDied()
     {
-        PlayerPrefs.SetInt("RoomCount", roomCount);
-        PlayerPrefs.SetInt("PlayerHP", PlayerHP);
-        PlayerPrefs.SetInt("PlayerGold", PlayerGold);
+        Application.LoadLevel(0);
     }
-
-    public int LoadRoomCount()
-    {
-        roomCount = PlayerPrefs.GetInt("RoomCount");
-
-        return roomCount;
-    }
-    public int LoadPlayerHP()
-    {
-        PlayerHP = PlayerPrefs.GetInt("PlayerHP");
-
-        return PlayerHP;
-    }
-    public int LoadPlayerGold()
-    {
-        PlayerGold = PlayerPrefs.GetInt("PlayerGold");
-
-        return PlayerGold;
-    }
-
-
 
 }

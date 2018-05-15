@@ -9,12 +9,24 @@ public class InstanciateEnemys : MonoBehaviour {
     public Transform[] enemyPositions;
     public GameObject Boss;
 
+    public int roomCount;
+
 
 	// Use this for initialization
 	void Start () {
-        int roomCount = GameObject.FindObjectOfType<GameManager>().LoadRoomCount();
+        //int roomCount = PlayerPrefs.GetInt("roomCount");
+        Debug.Log("Enemies : " + roomCount);
+        
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
 
-        if (roomCount % 3 == 0)
+    public void Spawnenemies()
+    {
+        if (roomCount % 3 == 2)
         {
             enemies.Add(Instantiate(Boss, enemyPositions[0].transform.position, Quaternion.identity));
         }
@@ -26,10 +38,5 @@ public class InstanciateEnemys : MonoBehaviour {
                 enemies.Add(Instantiate(enemy, enemyPositions[i].transform.position, Quaternion.identity));
             }
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
 }
