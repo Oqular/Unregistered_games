@@ -8,8 +8,9 @@ public class CoinUI : MonoBehaviour {
     public int coins;
     private Text txt;
 
-    public void Start()
+    private void Awake()
     {
+        coins = 0;
         txt = GetComponent<Text>();
     }
 

@@ -54,14 +54,13 @@ public class Enemy : MonoBehaviour {
     public void EnemyDamaged(int damage)
     {
         currentHealth -= damage;
-       // Debug.Log("current health is " + currentHealth);
+        Debug.Log("current health is " + currentHealth);
     }
 
     public void DropCoins()
     {
         //GameObject coins = (GameObject)Instantiate(goldPrefab, transform.position, transform.rotation);
         FindObjectOfType<GameManager>().DropGold(this);
-        FindObjectOfType<InstanciateEnemys>().count--;
     }
 
     private void TimerAfterDMG(float timeAfterDMG)

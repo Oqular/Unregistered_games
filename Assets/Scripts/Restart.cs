@@ -17,6 +17,6 @@ public class Restart : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
-            Application.LoadLevel(2);
+            Application.LoadLevel(1);
     }
 }
