@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
     public int enemyCount;
     public GameObject door;
     public GameObject reward;
+    public GameObject HealthReward;
     private bool roomFinished;
 
     //    Saves
@@ -73,7 +74,14 @@ public class GameManager : MonoBehaviour {
 
     public void DropReward()
     {
-        Instantiate(reward, reward.transform.position, Quaternion.identity);
+        if (roomCount % 3 == 2)
+        {
+            Instantiate(HealthReward, reward.transform.position, Quaternion.identity);
+
+        }else
+        {
+            Instantiate(reward, reward.transform.position, Quaternion.identity);
+        }
     }
 
     public void PlayerDied()
