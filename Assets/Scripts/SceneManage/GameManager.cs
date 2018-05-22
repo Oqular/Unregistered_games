@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour {
 
     public GameObject gold;
     [SerializeField]
-    private int enemyCount;
+    public int enemyCount;
     public GameObject door;
     public GameObject reward;
     private bool roomFinished;
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour {
         //PlayerPrefs.SetInt("goldCount", 0);
         //PlayerPrefs.SetInt("playerHp", 3);
 
-        enemyCount = FindObjectOfType<InstanciateEnemys>().enemies.Count;
+        //enemyCount = FindObjectOfType<InstanciateEnemys>().enemies.Count;
         roomFinished = false;
         roomCount = PlayerPrefs.GetInt("roomCount");
         goldCount = PlayerPrefs.GetInt("goldCount");
@@ -33,18 +33,21 @@ public class GameManager : MonoBehaviour {
         FindObjectOfType<Character>().lives = playerHp;
         FindObjectOfType<InstanciateEnemys>().roomCount = roomCount;
         Debug.Log("goldCount : " + playerHp);
-        FindObjectOfType<InstanciateEnemys>().Spawnenemies();
+        FindObjectOfType<InstanciateEnemys>().Spawnenemies(
+            );
     }
 	
 	// Update is called once per frame
 	void Update () {
-		if(enemyCount <= 0 && !roomFinished)
+        enemyCount = FindObjectOfType<InstanciateEnemys>().count;
+
+        if (enemyCount <= 0 && !roomFinished)
         {
             Destroy(door);
             DropReward();
             roomFinished = true;
             roomCount++;
-            
+
             playerHp = FindObjectOfType<Character>().lives;
             
             //Debug.Log("Coins : " + goldCount);
@@ -75,7 +78,8 @@ public class GameManager : MonoBehaviour {
 
     public void PlayerDied()
     {
-        Application.LoadLevel(0);
+        //Application.LoadLevel(0);
+        FindObjectOfType<PauseMenu>().Death();
     }
 
 }

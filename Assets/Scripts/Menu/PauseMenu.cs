@@ -11,10 +11,11 @@ public class PauseMenu : MonoBehaviour {
     public GameObject pauseMenuUI;
     public GameObject pauseButton;
     public GameObject player;
-    
-	
-	// Update is called once per frame
-	void Update () {
+    public GameObject DeathUI;
+
+
+    // Update is called once per frame
+    void Update () {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameIsPaused)
@@ -47,8 +48,22 @@ public class PauseMenu : MonoBehaviour {
         GameIsPaused = true;
     }
 
+    public void Death()
+    {
+        
+        (player.GetComponent("PlayerController") as MonoBehaviour).enabled = false;
+        Time.timeScale = 0f;
+        GameIsPaused = true;
+        DeathUI.SetActive(true);
+
+    }
+
     public void BackToMenuLevel()
     {
+        //GameIsPaused = !GameIsPaused;
+        //DeathUI.SetActive(false);
+        //(player.GetComponent("PlayerController") as MonoBehaviour).enabled = true;
+        //Time.timeScale = 1f;
         SceneManager.LoadScene("menu");
     }
 
