@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 33366988807838344}
   - component: {fileID: 23176694548919666}
   - component: {fileID: 65684615211455476}
+  - component: {fileID: 114947180522139794}
   m_Layer: 0
   m_Name: Crate_Sealed_01 1
   m_TagString: Untagged
@@ -148,6 +149,19 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1146303737773776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eccc931aa19d4f848841f44b9a5466e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 2
+  loot: {fileID: 1270651278216982, guid: 4cd316a4d1498bc449112a8ec8e9d2bf, type: 2}
+--- !u!114 &114947180522139794
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1465574468399522}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eccc931aa19d4f848841f44b9a5466e6, type: 3}

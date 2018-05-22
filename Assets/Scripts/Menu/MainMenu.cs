@@ -7,6 +7,9 @@ public class MainMenu : MonoBehaviour {
 
     public void StartGame()
     {
+        PlayerPrefs.SetInt("roomCount", 0);
+        PlayerPrefs.SetInt("goldCount", 0);
+        PlayerPrefs.SetInt("playerHp", 3);
         SceneManager.LoadScene("main");
     }
 
