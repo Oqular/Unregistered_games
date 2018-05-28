@@ -13,6 +13,8 @@ public class FollowPlayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        this.transform.LookAt(target);
+
         if (this.transform.position != target)
         {
             target = GameObject.FindObjectOfType<PlayerController>().transform.position;

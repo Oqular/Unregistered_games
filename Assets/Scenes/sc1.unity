@@ -9859,7 +9859,7 @@ MonoBehaviour:
   - {fileID: 277576850}
   - {fileID: 155503738}
   - {fileID: 1263553322}
-  Boss: {fileID: 1120891089139204, guid: 47450242aeb1b91409aee55a3a7b7c4f, type: 2}
+  Boss: {fileID: 1111116916539310, guid: d29eeddc633cbbc419992ae03ef7559a, type: 2}
   roomCount: 0
   count: 0
 --- !u!114 &971592792
