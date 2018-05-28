@@ -9,10 +9,13 @@ public class Gun : MonoBehaviour {
     public float cdBetweenShots;
     private float cdCounter;
     public Transform firePoint;
-    
+    public GameObject s;
+
+    public AudioSource sounds;
+
     // Use this for initialization
 	void Start () {
-		
+        sounds = s.GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -24,6 +27,7 @@ public class Gun : MonoBehaviour {
             {
                 cdCounter = cdBetweenShots;
                 Instantiate(bullet, firePoint.position, firePoint.rotation);
+                sounds.Play();
             }
         }
         else
